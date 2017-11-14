@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui"
+	  >
+ <h:head>
+ </h:head>
+ 
+ <h:body>
+ 
+  <p:panel header="Gravar Cliente">
+     <h:form id="form1">
+        <p:panelGrid columns="2">
+        
+          <h:outputText value="Nome" />
+          <p:inputText  value="#{mb.cliente.nome}" size="35" required="true"
+                        requiredMessage="Entre com o Nome"
+          >
+            <f:validator validatorId="nomeValidator"></f:validator> 
+          </p:inputText> 
+          
+ 
+          <h:outputText value="Email" />
+          <p:inputText  value="#{mb.cliente.email}" size="35" required="true"
+                        requiredMessage="Entre com o Email"
+          >
+            <f:validator validatorId="emailValidator"></f:validator>
+          </p:inputText> 
+ 
+ 
+          <h:outputText value="Sexo" />
+          <p:selectOneMenu value="#{mb.cliente.sexo}">
+              <f:selectItem itemLabel="Masculino" itemValue="m"></f:selectItem>
+              <f:selectItem itemLabel="Feminino"  itemValue="f"></f:selectItem>
+          </p:selectOneMenu>
+          
+          
+          <p:commandButton value="Gravar" 
+                           action="#{mb.gravar}"
+                           update=":form1, :form2"
+                           ajax="true" />
+          
+        </p:panelGrid>
+        
+            <p:growl></p:growl>
+            <p:messages></p:messages>
+      </h:form>
+  </p:panel>
+  
+  
+  
+    <p:panel header="Relatorio Cliente">
+     <h:form id="form2">
+        <p:commandButton value="Mostrar Relatorio" 
+                          action="#{mb.relatorio}" ajax="false">
+       </p:commandButton>
+       
+     </h:form>
+     </p:panel>
+     
+ </h:body>
+ 
+</html>
